@@ -15,6 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     initMenus();
     initWidgets();
+    statusBar()->addWidget(m_toolNameLabel);
+    statusBar()->addWidget(m_vertexCountLabel);
+    statusBar()->addWidget(m_lineCountLabel);
+    //statusBar()->showMessage("zoapzopa");
+
 }
 
 MainWindow::~MainWindow() {
@@ -25,6 +30,16 @@ MainWindow::~MainWindow() {
   Initializes all menus of this widget.
 */
 void MainWindow::initMenus() {
+    // Labels
+    m_toolNameLabel = new QLabel(this);
+    m_toolNameLabel->setText("Hello World!");
+
+    m_vertexCountLabel = new QLabel(this);
+    m_vertexCountLabel->setText("zopazopa");
+    m_lineCountLabel = new QLabel(this);
+    m_lineCountLabel->setText("tsfsdfsf");
+
+
     // Creates the file menu
     m_fileMenu = new QMenu(this);
     m_fileMenu->setTitle(QString("&File"));
@@ -62,6 +77,16 @@ void MainWindow::initMenus() {
     m_deleteVertexAction->setText("&Delete Vertex");
     m_toolsMenu->addAction(m_deleteVertexAction);
 
+    // Creates add line action in tools menu
+    m_addLineAction = new QAction(this);
+    m_addLineAction->setText("Add &Line");
+    m_toolsMenu->addAction(m_addLineAction);
+
+    // Creates delete line action in tools menu
+    m_deleteLineAction = new QAction(this);
+    m_deleteLineAction->setText("Delete Lin&e");
+    m_toolsMenu->addAction(m_deleteLineAction);
+
     // Connects the triggering of the quit action
     // to closing the main window
     connect(m_quitAction, SIGNAL(triggered()),
@@ -83,6 +108,7 @@ void MainWindow::initMenus() {
     connect(m_aboutAction, SIGNAL(triggered()),
             qApp, SLOT(aboutQt()));
     setFixedSize(QSize(800,600));
+
 
 }
 

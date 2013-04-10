@@ -33,6 +33,7 @@ void DrawingWidget::paintEvent(QPaintEvent *event) {
 void DrawingWidget::mousePressEvent(QMouseEvent *event){
     x=event->x();
     y=event->y();
+    m_mainWindow->m_vertexCountLabel->setText("X:");
     update();
 }
 
