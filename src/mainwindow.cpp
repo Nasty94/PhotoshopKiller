@@ -10,6 +10,7 @@
 #include "drawingwidget.h"
 
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -26,10 +27,20 @@ MainWindow::~MainWindow() {
     // Intentionally empty
 }
 
+void MainWindow::addVertex(Vector2 vertex){
+    vertexList << vertex;
+}
+
+QList<Vector2> MainWindow::getVertexList(){
+    return vertexList;
+}
+
 /**
   Initializes all menus of this widget.
 */
 void MainWindow::initMenus() {
+
+
     // Labels
     m_toolNameLabel = new QLabel(this);
     m_toolNameLabel->setText("Hello World!");

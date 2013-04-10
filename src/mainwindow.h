@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QLabel>
+#include "Vector2.h"
 
 
 class DrawingWidget;
@@ -14,10 +15,13 @@ class MainWindow: public QMainWindow {
         MainWindow(QWidget *parent = 0);
         QLabel *m_vertexCountLabel;
         ~MainWindow();
+        void addVertex(Vector2 vertex);
+        QList<Vector2> getVertexList();
 
     protected:
         void initMenus();
         void initWidgets();
+
 
         DrawingWidget *m_drawingWidget;
 
@@ -37,6 +41,7 @@ class MainWindow: public QMainWindow {
         QLabel *m_toolNameLabel;
 
         QLabel *m_lineCountLabel;
+        QList<Vector2> vertexList;
 };
 
 #endif // MAINWINDOW_H

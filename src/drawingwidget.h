@@ -2,6 +2,7 @@
 #define DRAWINGWIDGET_H
 
 #include <QWidget>
+#include "Vector2.h"
 
 class MainWindow;
 

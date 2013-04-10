@@ -27,20 +27,25 @@ void DrawingWidget::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.fillRect(event->rect(), Qt::white);
     painter.setBrush(Qt::black);
-    painter.drawEllipse(x-10,y-10,20,20);
+    foreach(Vector2 vector,m_mainWindow->getVertexList()){
+        painter.drawEllipse(vector.x-10,vector.y-10,20,20);
+    }
+
+
+
+
 }
 
 void DrawingWidget::mousePressEvent(QMouseEvent *event){
     x=event->x();
     y=event->y();
-    m_mainWindow->m_vertexCountLabel->setText("X:");
+    Vector2 p1 {x, y};
+    m_mainWindow->addVertex(p1);
     update();
 }
 
 void DrawingWidget::mouseMoveEvent(QMouseEvent *event){
-    x=event->x();
-    y=event->y();
-    update();
+
 }
 
 
