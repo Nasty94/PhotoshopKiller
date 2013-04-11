@@ -16,6 +16,7 @@ class DrawingWidget: public QWidget {
         void paintEvent(QPaintEvent *event);
         void mousePressEvent(QMouseEvent *event);
         void mouseMoveEvent(QMouseEvent *event);
+        bool vertexAddingAllowed(Vector2 vertex);
         MainWindow *m_mainWindow;
     private:
         int x;

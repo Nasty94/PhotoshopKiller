@@ -9,6 +9,17 @@
 #include <QWhatsThis>
 #include "drawingwidget.h"
 
+enum State{
+    PASSIVE,
+    ADD_VERTEX,
+    MOVE_VERTEX,
+    DELETE_VERTEX,
+    ADD_LINE,
+    MOVE_LINE,
+    DELETE_LINE,
+    CHANGE_LINE_COLOR
+};
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -33,6 +44,15 @@ void MainWindow::addVertex(Vector2 vertex){
 
 QList<Vector2> MainWindow::getVertexList(){
     return vertexList;
+}
+
+void MainWindow::activateVertexAdding(){
+    currentState = ADD_VERTEX;
+    m_toolNameLabel->setText("Adding verces!");
+}
+
+int MainWindow::getCurrentState(){
+    return currentState;
 }
 
 /**
@@ -77,6 +97,8 @@ void MainWindow::initMenus() {
     m_addVertexAction = new QAction(this);
     m_addVertexAction->setText("&Add Vertex");
     m_toolsMenu->addAction(m_addVertexAction);
+    connect(m_addVertexAction, SIGNAL(triggered()),
+            this, SLOT(activateVertexAdding()));
 
     // Creates move vertex action in tools menu
     m_moveVertexAction = new QAction(this);

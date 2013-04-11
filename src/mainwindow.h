@@ -17,11 +17,15 @@ class MainWindow: public QMainWindow {
         ~MainWindow();
         void addVertex(Vector2 vertex);
         QList<Vector2> getVertexList();
+        int getCurrentState();
+    public slots:
+        void activateVertexAdding();
 
     protected:
         void initMenus();
         void initWidgets();
 
+        int currentState;
 
         DrawingWidget *m_drawingWidget;
 
