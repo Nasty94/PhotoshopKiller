@@ -13,9 +13,10 @@ public:
 
     Vector2() = default;
     Vector2(float nx, float ny);
-    float distanceFrom(Vector2 v);
+    float distanceFrom(float x, float y);
 
-    friend ostream& operator << (ostream& valja, Vector2 v); /*!< Kirjutab v?ljundvoogu punkti koordinaadid kujul (nx, ny).*/
+    void setCoords(float nx, float ny);
+
 };
 
 #endif

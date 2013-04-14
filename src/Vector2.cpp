@@ -11,10 +11,16 @@ Vector2::Vector2(float nx, float ny)
 }
 
 
-float Vector2::distanceFrom(Vector2 v) {
-    return sqrt( (x - v.x)*(x - v.x) + (y - v.y)*(y - v.y) );
+float Vector2::distanceFrom(float dx, float dy) {
+    return sqrt( (x - dx)*(x - dx) + (y - dy)*(y - dy) );
 }
 
-ostream& operator << (ostream& os, Vector2 v) {
-    return os << "(" << v.x << "," << v.y << ")";
+void Vector2::setCoords(float nx, float ny){
+
+            this->x=nx;
+            this->y=ny;
+
 }
+
+
+

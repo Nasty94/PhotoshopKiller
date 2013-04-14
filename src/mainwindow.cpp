@@ -51,8 +51,40 @@ void MainWindow::activateVertexAdding(){
     m_toolNameLabel->setText("Adding verces!");
 }
 
+void MainWindow::activateVertexMoving(){
+    if(vertexList.size()>0){
+        currentState = MOVE_VERTEX;
+        m_toolNameLabel->setText("Moving verces!");
+    }
+}
+
+void MainWindow::activateLineAdding(){
+    if(vertexList.size()>2){
+        currentState = ADD_LINE;
+        m_toolNameLabel->setText("Adding lines!");
+    }
+}
+
+void MainWindow::activateVertexDeletion(){
+    if(vertexList.size()>0){
+        currentState = DELETE_VERTEX;
+        m_toolNameLabel->setText("Deleting verces!");
+    }
+}
+
+void MainWindow::activateLineDeletion(){
+    if(vertexList.size()>0){
+        currentState = DELETE_LINE;
+        m_toolNameLabel->setText("Deleting lines!");
+    }
+}
+
 int MainWindow::getCurrentState(){
     return currentState;
+}
+
+void MainWindow::setMSG(QString string){
+    m_vertexCountLabel->setText(string);
 }
 
 /**
@@ -104,21 +136,29 @@ void MainWindow::initMenus() {
     m_moveVertexAction = new QAction(this);
     m_moveVertexAction->setText("&Move Vertex");
     m_toolsMenu->addAction(m_moveVertexAction);
+    connect(m_moveVertexAction, SIGNAL(triggered()),
+            this, SLOT(activateVertexMoving()));
 
     // Creates delete vertex action in tools menu
     m_deleteVertexAction = new QAction(this);
     m_deleteVertexAction->setText("&Delete Vertex");
     m_toolsMenu->addAction(m_deleteVertexAction);
+    connect(m_deleteVertexAction, SIGNAL(triggered()),
+            this, SLOT(activateVertexDeletion()));
 
     // Creates add line action in tools menu
     m_addLineAction = new QAction(this);
     m_addLineAction->setText("Add &Line");
     m_toolsMenu->addAction(m_addLineAction);
+    connect(m_addLineAction, SIGNAL(triggered()),
+            this, SLOT(activateLineAdding()));
 
     // Creates delete line action in tools menu
     m_deleteLineAction = new QAction(this);
     m_deleteLineAction->setText("Delete Lin&e");
     m_toolsMenu->addAction(m_deleteLineAction);
+    connect(m_deleteLineAction, SIGNAL(triggered()),
+            this, SLOT(activateLineDeletion()));
 
     // Connects the triggering of the quit action
     // to closing the main window

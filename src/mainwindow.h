@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QLabel>
 #include "Vector2.h"
+#include "DynamicLine.h"
 
 
 class DrawingWidget;
@@ -18,8 +19,16 @@ class MainWindow: public QMainWindow {
         void addVertex(Vector2 vertex);
         QList<Vector2> getVertexList();
         int getCurrentState();
+        QList<Vector2> vertexList;
+        QList<DynamicLine<Vector2>> lineList;
+
+        void setMSG(QString string);
     public slots:
         void activateVertexAdding();
+        void activateVertexMoving();
+        void activateVertexDeletion();
+        void activateLineAdding();
+        void activateLineDeletion();
 
     protected:
         void initMenus();
@@ -45,7 +54,7 @@ class MainWindow: public QMainWindow {
         QLabel *m_toolNameLabel;
 
         QLabel *m_lineCountLabel;
-        QList<Vector2> vertexList;
+
 };
 
 #endif // MAINWINDOW_H
